@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app" class="container ">
+        <h1>{{title}}</h1>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nombreEva">Nombre:</label>
+                <input type="text" v-model="newEva.nombre" id="nombreEva" class="form-control" placeholder="ingrese el Nombre de la eva">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nombreEva">Porcentaje:</label>
+                <input type="number" v-model.number="newEva.porcentaje" id="nombreEva" class="form-control" placeholder="ingrese el porcentaje de la eva">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nombreEva">Nota:</label>
+                <input type="number" v-model.number="newEva.nota" id="nombreEva" class="form-control" placeholder="ingrese la nota ">
+            </div>
+
+        </div>
+
+        <button @click="agregarEva" class="btn btn-primary">Agregar</button>
+        <button @click="limpiarEvaluaciones" class="btn btn-danger">Limpiar</button>
+        <br>
+        <h2>Evaluaciones</h2>
+        <ol>
+            <li class="list-group list-group-horizontal" v-for="(eva,index) of evaluaciones">
+                <div class="evas list-group-item flex-fill">{{eva.nombre}} </div>
+                <div class="evas list-group-item ">{{eva.porcentaje}} %</div>
+                <div class="evas list-group-item ">{{eva.nota}} </div>
+                <div class="evas list-group-item "> <button @click="borrarEva(index)" class="btn"><i class="fas fa-trash"></i></button></div>
+            </li>
+        </ol>
+        <h4>Nota al {{sumarPorcentajes}}%: {{sumarNotas}}</h4>
+    </div>
+
+    <script src="https://kit.fontawesome.com/d020665bcf.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
