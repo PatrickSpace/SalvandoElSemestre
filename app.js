@@ -5,7 +5,9 @@ const app = new Vue({
         evaluaciones: [],
         newEva: { nombre: '', porcentaje: 0, nota: 0 },
         suma: 0,
-        porctotal: 0
+        porctotal: 0,
+        evaselect: {},
+        notafaltante: 0
     },
     methods: {
         agregarEva() {
@@ -17,13 +19,16 @@ const app = new Vue({
         },
         borrarEva(index) {
             this.evaluaciones.splice(index, 1);
+        },
+        verCuantoFalta() {
+            alert('Necesitas ' + this.notafaltante + ' para aprobar');
         }
     },
     computed: {
         sumarNotas() {
             this.suma = 0;
             for (eva of this.evaluaciones) {
-                this.suma = this.suma + eva.nota;
+                this.suma = this.suma + eva.nota * eva.porcentaje / 100;
             }
             return this.suma;
         },
@@ -33,7 +38,13 @@ const app = new Vue({
                 this.porctotal = this.porctotal + eva.porcentaje;
             }
             return this.porctotal;
+        },
+        cuantofalta() {
+            this.notafaltante = (12.5 - this.suma) / (this.evaselect / 100);
+            return this.notafaltante;
         }
+
+
 
     },
 });
